@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>{{ 'error.page.title'|trans }}</h1>
+    <p>{{ 'error.page.text'|trans }}</p>
+    <a class="btn btn-large btn-success returnButton" href="{{ path('homepage') }}">
+        {{ 'error.page.link'|trans }}
+    </a>
+{% endblock %}

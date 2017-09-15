@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="jumbotron">
+        <h2>{{ 'homepage.title'|trans }}</h2>
+
+        {% if error %}
+            <div class="alert alert-danger">{{ 'homepage.error.link'|trans }}</div>
+        {% endif %}
+
+        {{ form_start(form) }}
+            <div class="col-md-9">
+                {{ form_widget(form.origin, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="col-md-3">
+                {{ form_widget(form.submit, {'attr': {'class': 'btn btn-primary'}, 'label': 'form.shorten'}) }}
+            </div>
+            <div class="clearfix"></div>
+        {{ form_rest(form) }}
+    </div>
+{% endblock %}
