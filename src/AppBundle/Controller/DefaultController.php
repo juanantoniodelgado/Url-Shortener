@@ -23,7 +23,7 @@ class DefaultController extends Controller
      * @Route("/", name="homepage")
      * @return Response
      */
-    public function indexAction(Request $request)
+    public function indexAction(Request $request) : Response
     {
         $url = new StoredUrl();
         $form = $this->createForm(ShortenUrlForm::class, $url);
@@ -59,12 +59,12 @@ class DefaultController extends Controller
     /**
      * Success shortened link creation page.
      *
-     * @param string $token
      * @Route("/link-ready/{token}", name="success_page")
+     * @param string $token
      * @return Response
      * @throws NotFoundHttpException
      */
-    public function successPageAction($token)
+    public function successPageAction(string $token) : Response
     {
         $em = $this->getDoctrine()->getManager();
         $url = $em->getRepository('AppBundle:StoredUrl')->findByValidToken($token);
@@ -86,7 +86,7 @@ class DefaultController extends Controller
      * @Route("/api-docs", name="api_docs")
      * @return Response
      */
-    public function apiDocAction()
+    public function apiDocAction() : Response
     {
         return $this->render(':default:api_docs.html.twig');
     }
@@ -98,7 +98,7 @@ class DefaultController extends Controller
      * @param string $origin
      * @return JsonResponse
      */
-    public function encodeByUrlAction($origin)
+    public function encodeByUrlAction(string $origin) : JsonResponse
     {
         $helper = $this->get('app.url_checker');
 
@@ -133,7 +133,7 @@ class DefaultController extends Controller
      * @return RedirectResponse
      * @throws NotFoundHttpException
      */
-    public function redirectAction($token)
+    public function redirectAction(string $token) : RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
 

@@ -40,7 +40,7 @@ class StoredUrl
      */
     private $valid;
 
-    public function __construct($origin = null)
+    public function __construct(string $origin = null)
     {
         if ($origin !== null) {
 
@@ -53,7 +53,7 @@ class StoredUrl
     /**
      * @return int
      */
-    public function getId()
+    public function getId() : int
     {
         return $this->id;
     }
@@ -61,13 +61,13 @@ class StoredUrl
     /**
      * @param int $id
      */
-    public function setId($id)
+    public function setId(int $id)
     {
         $this->id = $id;
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getOrigin()
     {
@@ -77,7 +77,7 @@ class StoredUrl
     /**
      * @param string $origin
      */
-    public function setOrigin($origin)
+    public function setOrigin(string $origin)
     {
         $this->origin = $origin;
     }
@@ -85,7 +85,7 @@ class StoredUrl
     /**
      * @return string
      */
-    public function getToken()
+    public function getToken() : string
     {
         return $this->token;
     }
@@ -93,15 +93,15 @@ class StoredUrl
     /**
      * @param string $token
      */
-    public function setToken($token)
+    public function setToken(string $token)
     {
         $this->token = $token;
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
-    public function isValid()
+    public function isValid() : bool
     {
         return $this->valid;
     }
@@ -109,7 +109,7 @@ class StoredUrl
     /**
      * @param boolean $valid
      */
-    public function setValid($valid)
+    public function setValid(bool $valid)
     {
         $this->valid = $valid;
     }

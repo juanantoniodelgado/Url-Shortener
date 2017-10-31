@@ -8,10 +8,10 @@ class UrlCheckerHelper
      * Checks if the given url is a valid url.
      * Source: http://www.php.net/manual/en/function.preg-match.php#93824
      *
-     * @param $url
-     * @return boolean
+     * @param string $url
+     * @return bool
      */
-    public function isUrlValid($url)
+    public function isUrlValid($url) : bool
     {
         $regex = "((https?|ftp)\:\/\/)?"; // SCHEME
         $regex .= "([a-z0-9+!*(),;?&=\$_.-]+(\:[a-z0-9+!*(),;?&=\$_.-]+)?@)?"; // User and Pass
