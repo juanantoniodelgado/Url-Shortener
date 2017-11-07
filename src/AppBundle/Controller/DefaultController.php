@@ -19,8 +19,8 @@ class DefaultController extends Controller
     /**
      * Homepage.
      *
-     * @param Request $request
      * @Route("/", name="homepage")
+     * @param Request $request
      * @return Response
      */
     public function indexAction(Request $request) : Response
@@ -32,10 +32,9 @@ class DefaultController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-            $helper = $this->get('app.url_checker');
             $em = $this->getDoctrine()->getManager();
 
-            if ($helper->isUrlValid($url->getOrigin())) {
+            if (filter_var($url, FILTER_VALIDATE_URL)) {
 
                 $url->generateToken();
                 $em->persist($url);
@@ -119,7 +118,10 @@ class DefaultController extends Controller
 
         } else {
 
-            $response = array('status' => 'failed');
+            $response = array(
+                'status' => 'error',
+                'message' => 'Url not valid'
+            );
         }
 
         return new JsonResponse($response);
