@@ -2,7 +2,6 @@
 
 namespace AppBundle\Controller;
 
-use Doctrine\ORM\NoResultException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -68,15 +67,17 @@ class DefaultController extends Controller
         $em = $this->getDoctrine()->getManager();
         $url = $em->getRepository('AppBundle:StoredUrl')->findByValidToken($token);
 
-        if ($url === null) {
+        if ($url instanceof StoredUrl) {
+
+            return $this->render(':default:success.html.twig', array(
+                'url' => $url,
+                'token' => $token
+            ));
+
+        } else {
 
             throw new NotFoundHttpException();
         }
-
-        return $this->render(':default:success.html.twig', array(
-            'url' => $url,
-            'token' => $token
-        ));
     }
 
     /**
@@ -99,9 +100,7 @@ class DefaultController extends Controller
      */
     public function encodeByUrlAction(string $origin) : JsonResponse
     {
-        $helper = $this->get('app.url_checker');
-
-        if ($helper->isUrlValid($origin)) {
+        if (filter_var($origin, FILTER_VALIDATE_URL)) {
 
             $em = $this->getDoctrine()->getManager();
             $url = new StoredUrl($origin);
@@ -139,12 +138,13 @@ class DefaultController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        try {
+        $origin = $em->getRepository('AppBundle:StoredUrl')->findByValidToken($token);
 
-            $origin = $em->getRepository('AppBundle:StoredUrl')->findByValidToken($token);
+        if ($origin instanceof StoredUrl) {
+
             return $this->redirect($origin['origin']);
 
-        } catch(NoResultException $e) {
+        } else {
 
             throw new NotFoundHttpException();
         }
