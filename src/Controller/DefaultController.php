@@ -5,15 +5,15 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Form\ShortenUrlForm;
-use AppBundle\Entity\StoredUrl;
+use App\Form\ShortenUrlForm;
+use App\Entity\StoredUrl;
 
-class DefaultController extends Controller
+class DefaultController extends AbstractController
 {
     /**
      * Homepage.
@@ -22,7 +22,7 @@ class DefaultController extends Controller
      * @param Request $request
      * @return Response
      */
-    public function indexAction(Request $request) : Response
+    public function indexAction(Request $request): Response
     {
         $url = new StoredUrl();
         $form = $this->createForm(ShortenUrlForm::class, $url);
@@ -62,7 +62,7 @@ class DefaultController extends Controller
      * @return Response
      * @throws NotFoundHttpException
      */
-    public function successPageAction(string $token) : Response
+    public function successPageAction(string $token): Response
     {
         $em = $this->getDoctrine()->getManager();
         $url = $em->getRepository('AppBundle:StoredUrl')->findByValidToken($token);
@@ -81,24 +81,13 @@ class DefaultController extends Controller
     }
 
     /**
-     * Api documentation page.
-     *
-     * @Route("/api-docs", name="api_docs")
-     * @return Response
-     */
-    public function apiDocAction() : Response
-    {
-        return $this->render(':default:api_docs.html.twig');
-    }
-
-    /**
      * Returns an encoded url from the given url.
      *
      * @Route("/api/{origin}", name="encodeByUrl", requirements={"origin"=".+"})
      * @param string $origin
      * @return JsonResponse
      */
-    public function encodeByUrlAction(string $origin) : JsonResponse
+    public function encodeByUrlAction(string $origin): JsonResponse
     {
         if (filter_var($origin, FILTER_VALIDATE_URL)) {
 
@@ -134,7 +123,7 @@ class DefaultController extends Controller
      * @return RedirectResponse
      * @throws NotFoundHttpException
      */
-    public function redirectAction(string $token) : RedirectResponse
+    public function redirectAction(string $token): RedirectResponse
     {
         $em = $this->getDoctrine()->getManager();
 
