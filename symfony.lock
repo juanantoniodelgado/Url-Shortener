@@ -1,31 +1,4 @@
 {
-    "dama/doctrine-test-bundle": {
-        "version": "4.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "4.0",
-            "ref": "56eaa387b5e48ebcc7c95a893b47dfa1ad51449c"
-        },
-        "files": [
-            "config/packages/test/dama_doctrine_test_bundle.yaml"
-        ]
-    },
-    "doctrine/data-fixtures": {
-        "version": "v1.3.2"
-    },
-    "doctrine/doctrine-fixtures-bundle": {
-        "version": "3.0",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.0",
-            "ref": "fc52d86631a6dfd9fdf3381d0b7e3df2069e51b3"
-        },
-        "files": [
-            "src/DataFixtures/AppFixtures.php"
-        ]
-    },
     "doctrine/doctrine-migrations-bundle": {
         "version": "1.2",
         "recipe": {
@@ -41,18 +14,6 @@
     },
     "doctrine/migrations": {
         "version": "2.1.1"
-    },
-    "friendsofsymfony/rest-bundle": {
-        "version": "2.2",
-        "recipe": {
-            "repo": "github.com/symfony/recipes-contrib",
-            "branch": "master",
-            "version": "2.2",
-            "ref": "cad41ef93d6150067ae2bb3c7fd729492dff6f0a"
-        },
-        "files": [
-            "config/packages/fos_rest.yaml"
-        ]
     },
     "ocramius/package-versions": {
         "version": "1.5.1"
@@ -194,9 +155,6 @@
     "symfony/polyfill-php73": {
         "version": "v1.12.0"
     },
-    "symfony/process": {
-        "version": "v4.3.6"
-    },
     "symfony/property-access": {
         "version": "v4.3.6"
     },
@@ -216,9 +174,6 @@
             "config/packages/routing.yaml",
             "config/routes.yaml"
         ]
-    },
-    "symfony/security-core": {
-        "version": "v4.3.6"
     },
     "symfony/serializer": {
         "version": "v4.3.6"
@@ -284,26 +239,11 @@
     "symfony/var-exporter": {
         "version": "v4.3.6"
     },
-    "symfony/web-server-bundle": {
-        "version": "3.3",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "master",
-            "version": "3.3",
-            "ref": "dae9b39fd6717970be7601101ce5aa960bf53d9a"
-        }
-    },
     "symfony/yaml": {
         "version": "v4.3.6"
     },
     "webmozart/assert": {
         "version": "1.5.0"
-    },
-    "willdurand/jsonp-callback-validator": {
-        "version": "v1.1.0"
-    },
-    "willdurand/negotiation": {
-        "version": "v2.3.1"
     },
     "zendframework/zend-code": {
         "version": "3.4.0"
