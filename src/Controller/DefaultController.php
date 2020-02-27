@@ -33,7 +33,7 @@ class DefaultController extends AbstractController
 
             $em = $this->getDoctrine()->getManager();
 
-            if (filter_var($url, FILTER_VALIDATE_URL)) {
+            if (filter_var($url->getOrigin(), FILTER_VALIDATE_URL)) {
 
                 $url->generateToken();
                 $em->persist($url);
@@ -65,11 +65,11 @@ class DefaultController extends AbstractController
     public function successPageAction(string $token): Response
     {
         $em = $this->getDoctrine()->getManager();
-        $url = $em->getRepository('AppBundle:StoredUrl')->findByValidToken($token);
+        $url = $em->getRepository(StoredUrl::class)->findByValidToken($token);
 
         if ($url instanceof StoredUrl) {
 
-            return $this->render(':default:success.html.twig', array(
+            return $this->render('default/success.html.twig', array(
                 'url' => $url,
                 'token' => $token
             ));
@@ -127,11 +127,11 @@ class DefaultController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $origin = $em->getRepository('AppBundle:StoredUrl')->findByValidToken($token);
+        $origin = $em->getRepository(StoredUrl::class)->findByValidToken($token);
 
         if ($origin instanceof StoredUrl) {
 
-            return $this->redirect($origin['origin']);
+            return $this->redirect($origin->getOrigin());
 
         } else {
 

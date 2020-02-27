@@ -1,0 +1,4 @@
+/database/data/*
+!/database/data/.gitkeep
+
+/logs/nginx/*

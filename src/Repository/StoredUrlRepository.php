@@ -6,6 +6,7 @@ namespace App\Repository;
 
 use App\Entity\StoredUrl;
 use App\Exception\UrlNotFoundException;
+use Doctrine\ORM\AbstractQuery;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\UnexpectedResultException;
 
@@ -22,11 +23,10 @@ final class StoredUrlRepository extends EntityRepository
     {
         try {
             return $this->createQueryBuilder('st')
-                ->select('st.origin')
                 ->where('st.token = :token')
                 ->andWhere('st.valid = 1')
                 ->setParameter('token', $token)
-                ->getQuery()->getSingleResult();
+                ->getQuery()->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
 
         } catch (UnexpectedResultException $exception) {
 
