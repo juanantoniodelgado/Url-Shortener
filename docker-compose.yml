@@ -15,6 +15,7 @@ services:
         volumes:
             - ./docker/database/init.sql:/docker-entrypoint-initdb.d/init.sql
             - ./docker/database/data:/var/lib/mysql
+            - ./docker/logs/database:/var/log/mysql
 
     php:
         container_name: php
