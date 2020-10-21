@@ -115,7 +115,7 @@ class StoredUrl
     }
 
     /**
-     * Generates a new random token from an encryptation of the current timestamp
+     * Generates a new random token from an encryption of the current timestamp
      */
     public function generateToken()
     {
