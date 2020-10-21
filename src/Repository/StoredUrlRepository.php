@@ -17,9 +17,8 @@ final class StoredUrlRepository extends EntityRepository
      *
      * @param string $token
      * @return StoredUrl
-     * @throws UrlNotFoundException
      */
-    public function findByValidToken(string $token): StoredUrl
+    public function findByValidToken(string $token): ? StoredUrl
     {
         try {
             return $this->createQueryBuilder('st')
@@ -27,10 +26,8 @@ final class StoredUrlRepository extends EntityRepository
                 ->andWhere('st.valid = 1')
                 ->setParameter('token', $token)
                 ->getQuery()->getSingleResult(AbstractQuery::HYDRATE_OBJECT);
-
         } catch (UnexpectedResultException $exception) {
-
-            throw new UrlNotFoundException();
+            return null;
         }
     }
 }
