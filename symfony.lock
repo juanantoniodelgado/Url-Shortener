@@ -148,9 +148,6 @@
     "symfony/doctrine-bridge": {
         "version": "v4.3.6"
     },
-    "symfony/dom-crawler": {
-        "version": "v4.3.6"
-    },
     "symfony/dotenv": {
         "version": "v4.3.6"
     },
@@ -212,13 +209,7 @@
     "symfony/inflector": {
         "version": "v4.3.6"
     },
-    "symfony/intl": {
-        "version": "v4.3.6"
-    },
     "symfony/mime": {
-        "version": "v4.3.6"
-    },
-    "symfony/options-resolver": {
         "version": "v4.3.6"
     },
     "symfony/orm-pack": {
@@ -226,9 +217,6 @@
     },
     "symfony/polyfill-intl-grapheme": {
         "version": "v1.18.1"
-    },
-    "symfony/polyfill-intl-icu": {
-        "version": "v1.12.0"
     },
     "symfony/polyfill-intl-idn": {
         "version": "v1.12.0"
@@ -286,9 +274,6 @@
     "symfony/translation-contracts": {
         "version": "v1.1.7"
     },
-    "symfony/twig-bridge": {
-        "version": "v4.3.6"
-    },
     "symfony/validator": {
         "version": "4.3",
         "recipe": {
@@ -313,9 +298,6 @@
     },
     "tuupola/base62": {
         "version": "2.0.0"
-    },
-    "twig/twig": {
-        "version": "v3.0.5"
     },
     "webimpress/safe-writer": {
         "version": "2.0.0"
