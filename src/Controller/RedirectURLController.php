@@ -5,9 +5,9 @@ namespace App\Controller;
 use App\Entity\StoredUrl;
 use Doctrine\ORM\EntityManagerInterface;
 use FOS\RestBundle\Controller\AbstractFOSRestController;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use FOS\RestBundle\Controller\Annotations\Get;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Symfony\Component\Routing\Annotation\Route;
 
 class RedirectURLController extends AbstractFOSRestController
 {
@@ -21,18 +21,19 @@ class RedirectURLController extends AbstractFOSRestController
     /**
      * Redirects to the original url from its token.
      *
-     * @Route("/r/{token}", name="redirect", methods={"GET"})
+     * @Get("/r/{token}", name="redirect", requirements={"token"="\S*"})
+     *
      * @param string $token
-     * @return RedirectResponse
+     * @return Response
      * @throws NotFoundHttpException
      */
-    public function redirectAction(string $token): RedirectResponse
+    public function redirectAction(string $token): Response
     {
         $origin = $this->em->getRepository(StoredUrl::class)->findByValidToken($token);
 
         if ($origin instanceof StoredUrl) {
 
-            return $this->redirect($origin->getOrigin());
+            return $this->handleView($this->redirectView($origin->getOrigin(), 302));
 
         } else {
 
