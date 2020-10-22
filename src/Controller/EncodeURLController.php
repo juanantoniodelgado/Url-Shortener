@@ -35,7 +35,7 @@ class EncodeURLController extends AbstractFOSRestController
     {
         $origin = $fetcher->get('origin');
 
-        if (!empty($origin) && filter_var($origin, FILTER_VALIDATE_URL)) {
+        if (filter_var($origin, FILTER_VALIDATE_URL)) {
 
             $url = new StoredUrl($origin);
 
