@@ -4,12 +4,12 @@ namespace App\Controller;
 
 use App\Entity\StoredUrl;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use FOS\RestBundle\Controller\AbstractFOSRestController;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
-class RedirectURLController extends AbstractController
+class RedirectURLController extends AbstractFOSRestController
 {
     private $em;
 
